@@ -231,8 +231,8 @@ class FileSpan extends SourceSpanMixin implements SourceSpanWithContext {
     if (other is! FileSpan) return super.union(other);
 
     var span = expand(other);
-    var beginSpan = span._start == _start ? this : other;
-    var endSpan = span._end == _end ? this : other;
+    var beginSpan = span._start == _start ? this : other as FileSpan;
+    var endSpan = span._end == _end ? this : other as FileSpan;
 
     if (beginSpan._end < endSpan._start) {
       throw new ArgumentError("Spans $this and $other are disjoint.");
